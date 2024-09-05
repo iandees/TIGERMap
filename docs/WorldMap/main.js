@@ -249,8 +249,8 @@ function computeColor(value) {
     }
 
     window.tigerMap.setFilter("allFeatures", filterArray)
-    // Add the `@type=node` filter to the node layer
-    filterArray.push(["==", ["get", "@type"], "node"]);
+    // Add the `has(@type)` filter to the node layer
+    filterArray.push(["has", "@type"]);
     window.tigerMap.setFilter("allFeatures-node", filterArray);
   }
   
@@ -265,7 +265,7 @@ function computeColor(value) {
 
     // modify the map layers
     window.tigerMap.setFilter("allFeatures", null);
-    window.tigerMap.setFilter("allFeatures-node", ["==", ["get", "@type"], "node"]);
+    window.tigerMap.setFilter("allFeatures-node", ["has", "@type"]);
 
     var filterTextBox = document.getElementById("filterTextBox");
     filterTextBox.value = "";

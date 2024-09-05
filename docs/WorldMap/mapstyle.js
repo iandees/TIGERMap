@@ -43,7 +43,7 @@ var mapstyle_layers = [
     },
     source: "WAMap",
     "source-layer": "osm",
-    filter: ["==", ["get", "@type"], "node"]
+    filter: ["has", "@type"]
   },
   {
     id: "highlight",
