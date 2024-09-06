@@ -13,6 +13,7 @@ var mapstyle_layers = [
         "interpolate",
         ["linear"],
         ["zoom"],
+         0, 0.1,
         10, 0.1,
         14, 2.5
       ],
@@ -34,7 +35,8 @@ var mapstyle_layers = [
         "interpolate",
         ["linear"],
         ["zoom"],
-        10, 0.1,
+         0, 0.1,
+        10, 0.2,
         14, 3
       ],
     },
