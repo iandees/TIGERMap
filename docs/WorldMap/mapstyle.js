@@ -13,9 +13,9 @@ var mapstyle_layers = [
         "interpolate",
         ["linear"],
         ["zoom"],
-         0, 0.1,
-        10, 0.1,
-        14, 2.5
+         9, 0.5,
+        10, 1,
+        13, 2
       ],
     },
     "layout": {
@@ -35,8 +35,7 @@ var mapstyle_layers = [
         "interpolate",
         ["linear"],
         ["zoom"],
-         0, 0.1,
-        10, 0.2,
+        11, 0.1,
         14, 3
       ],
     },
@@ -45,7 +44,7 @@ var mapstyle_layers = [
     },
     source: "WAMap",
     "source-layer": "osm",
-    filter: ["has", "@type"]
+    filter: ["all", ["==", "$type", "Point"]]
   },
   {
     id: "highlight",
