@@ -44,7 +44,7 @@ var mapstyle_layers = [
     },
     source: "WAMap",
     "source-layer": "osm",
-    filter: ["all", ["==", "$type", "Point"]]
+    filter: ["==", "$type", "Point"],
   },
   {
     id: "highlight",

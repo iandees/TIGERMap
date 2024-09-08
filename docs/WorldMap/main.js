@@ -205,12 +205,14 @@ function computeColor(value) {
       if (part.includes("!="))
       {
         var parts = part.split("!=");
-        if (parts[1].includes(","))
-        {
+        var filterPart = [];
+        if (parts[1].includes(",")) {
           parts[1] = parts[1].split(",");
+          filterPart = ["all", ["has", parts[0]], ["all", ...parts[1].map((value) => ["!=", parts[0], value])]];
+        } else {
+          filterPart = ["all", ["has", parts[0]], ["!=", parts[0], parts[1]]];
         }
 
-        var filterPart = ["match",["to-string",["get", parts[0]]],parts[1],false,true]
         filterArray.push(filterPart);
       }
       else if (part.includes("<") || part.includes(">"))
@@ -221,25 +223,27 @@ function computeColor(value) {
         {
           parts[1] = parts[1].split(",");
         }
-        var filterPart = [separator,["to-string",["get", parts[0]]],parts[1]]
+        var filterPart = [separator,parts[0],parts[1]]
         filterArray.push(filterPart);
       }
       else if (part.includes("="))
       {
         var parts = part.split("=");
-        if (parts[1].includes(","))
-        {
+        var filterPart = [];
+        if (parts[1].includes(",")) {
           parts[1] = parts[1].split(",");
+          filterPart = ["all", ["has", parts[0]], ["any", ...parts[1].map((value) => ["==", parts[0], value])]];
+        } else {
+          filterPart = ["all", ["has", parts[0]], ["==", parts[0], parts[1]]];
         }
 
-        var filterPart = ["match",["to-string",["get", parts[0]]],parts[1],true,false]
         filterArray.push(filterPart);
       }
       else
       {
         if (part[0] === "!")
         {
-          filterArray.push(['!',["has", part.substring(1)]]);
+          filterArray.push(["!has", part.substring(1)]);
         }
         else
         {
