@@ -255,6 +255,7 @@ function computeColor(value) {
     window.tigerMap.setFilter("allFeatures", filterArray)
     // Add the point filter to the node layer so we don't highlight untagged nodes along ways
     filterArray.push(["==", "$type", "Point"]);
+    console.log(`Filtering nodes with ${JSON.stringify(filterArray)}`);
     window.tigerMap.setFilter("allFeatures-node", filterArray);
   }
   
