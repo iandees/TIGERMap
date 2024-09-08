@@ -250,7 +250,7 @@ function computeColor(value) {
 
     window.tigerMap.setFilter("allFeatures", filterArray)
     // Add the point filter to the node layer so we don't highlight untagged nodes along ways
-    filterArray.push(["all", ["==", "$type", "Point"]]);
+    filterArray.push(["==", "$type", "Point"]);
     window.tigerMap.setFilter("allFeatures-node", filterArray);
   }
   
@@ -265,7 +265,7 @@ function computeColor(value) {
 
     // modify the map layers
     window.tigerMap.setFilter("allFeatures", null);
-    window.tigerMap.setFilter("allFeatures-node", ["all", ["==", "$type", "Point"]]);
+    window.tigerMap.setFilter("allFeatures-node", ["==", "$type", "Point"]);
 
     var filterTextBox = document.getElementById("filterTextBox");
     filterTextBox.value = "";
