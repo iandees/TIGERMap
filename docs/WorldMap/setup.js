@@ -146,7 +146,7 @@ document.addEventListener("alpine:init", async () => {
   if (myValue !== null) {
     const textBox = document.getElementById('filterTextBox');
     textBox.value = decodeURIComponent(myValue);
-    window.addEventListener('load', function() {
+    map.once('idle', function() {
       filterMap();
     });
   }

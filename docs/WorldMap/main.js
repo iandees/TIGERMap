@@ -156,16 +156,23 @@ function computeColor(value) {
     var filterTextBox = document.getElementById("filterTextBox");
     var filterText = filterTextBox.value;
 
-    if (filterText.startsWith("(color)"))
-    {
+    // add filter to url
+    var queryParams = new URLSearchParams(window.location.search);
+    queryParams.set('filter', encodeURIComponent(filterTextBox.value));
+    const newQueryString = queryParams.toString();
+    const newURL = `${window.location.pathname}?${newQueryString}${window.location.hash}`;
+    window.history.replaceState({}, '', newURL);
+
+    if (filterText.startsWith("(color)")) {
       addColorProperty(filterText.replace("(color)",""))
       return;
     }
-    if (filterText.startsWith("(voronoi)"))
-    {
+
+    if (filterText.startsWith("(voronoi)")) {
       filterText = filterText.replace("(voronoi)","");
       addVoronoi(filterText)
     }
+
     map.setPaintProperty('allFeatures','line-color','#000000');
     map.setPaintProperty('allFeatures-node','circle-color','#000000');
     map.setPaintProperty('osmcarto','raster-saturation',0)
@@ -174,13 +181,6 @@ function computeColor(value) {
       clearFilter();
       return;
     }
-
-    // add filter to url
-    var queryParams = new URLSearchParams(window.location.search);
-    queryParams.set('filter', encodeURIComponent(filterTextBox.value));
-    const newQueryString = queryParams.toString();
-    const newURL = `${window.location.pathname}?${newQueryString}${window.location.hash}`;
-    window.history.replaceState({}, '', newURL);
   
     // key1;key2;key3...
     // !key1;key2...
@@ -297,8 +297,8 @@ function computeColor(value) {
     //  "line-color": "#000000",
     //  "line-width": 2,
     //},
-    map.setPaintProperty ('allFeatures','line-color','#000000');
-    map.setPaintProperty ('allFeatures-node','circle-color','#000000');
+    map.setPaintProperty('allFeatures','line-color','#000000');
+    map.setPaintProperty('allFeatures-node','circle-color','#000000');
     map.setPaintProperty('osmcarto','raster-saturation',0);
 
     const emptyGeoJson = {
